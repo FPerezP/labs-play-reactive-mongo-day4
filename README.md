@@ -1,4 +1,4 @@
-1. Intro
+# 1. Intro
 
 This is a sample Play App used in the Scala Crash Course Day 4
 
@@ -6,7 +6,7 @@ http://www.meetup.com/%CE%BB-Lambda-ES/events/192225692/
 
 Shows basic usage of a Play2 app with the Play Reactive Mongo Plugin
 
-2. Adding dependencies
+# 2. Adding dependencies
 
 */build.sbt*
 ```scala
@@ -19,7 +19,7 @@ libraryDependencies ++= Seq(
 
 ```
 
-4. Configuring plugins
+# 3. Configuring plugins
 
 */conf/play.plugins*
 
@@ -27,20 +27,21 @@ libraryDependencies ++= Seq(
 1100:play.modules.reactivemongo.ReactiveMongoPlugin
 ```
 
-5. Configuring the DB
+# 4. Configuring the DB
 
 ```
 mongodb.uri ="mongodb://username:password@localhost:27017/your_db_name"
 ```
 
-6. routes
+# 5. Routes
 
 *conf/routes*
 ```routes
-GET     /people                           controllers.Application.people
+GET        /people              controllers.Application.people
+POST       /people              controllers.Application.addPerson()
 ```
 
-7. Model
+# 6. Model
 
 ```scala
 import play.api.libs.json.Json
@@ -57,14 +58,14 @@ trait JSONFormats {
 }
 ```
 
-8. Controller
+# 7. Controller
 
 *controllers/Application.scala*
 ```scala
 
 object Application extends Controller with MongoController with JSONFormats {
 
-  def collection: JSONCollection = db.collection[JSONCollection]("persons")
+  def collection: JSONCollection = db.collection[JSONCollection]("people")
 
   def people = Action.async(parse.anyContent) { request =>
     val peopleList = collection.find(Json.obj()).cursor[Person].collect[List](upTo = 100, stopOnError = true)
@@ -87,7 +88,7 @@ object Application extends Controller with MongoController with JSONFormats {
   
 ```
 
-9. Run this app
+# 8. Run this app
 
 ```sh
 ./activator run

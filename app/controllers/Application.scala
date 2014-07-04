@@ -17,7 +17,7 @@ import play.modules.reactivemongo.json.collection.JSONCollection
 
 object Application extends Controller with MongoController with JSONFormats {
 
-  def collection: JSONCollection = db.collection[JSONCollection]("persons")
+  def collection: JSONCollection = db.collection[JSONCollection]("people")
 
   def people = Action.async(parse.anyContent) { request =>
     val peopleList = collection.find(Json.obj()).cursor[Person].collect[List](upTo = 100, stopOnError = true)
