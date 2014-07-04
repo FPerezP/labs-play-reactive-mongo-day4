@@ -1,4 +1,4 @@
-*1. Intro*
+**1. Intro**
 
 This is a sample Play App used in the Scala Crash Course Day 4
 
@@ -6,7 +6,7 @@ http://www.meetup.com/%CE%BB-Lambda-ES/events/192225692/
 
 Shows basic usage of a Play2 app with the Play Reactive Mongo Plugin
 
-*2. Adding dependencies*
+**2. Adding dependencies**
 
 */build.sbt*
 ```scala
@@ -19,7 +19,7 @@ libraryDependencies ++= Seq(
 
 ```
 
-*3. Configuring plugins*
+**3. Configuring plugins**
 
 */conf/play.plugins*
 
@@ -27,13 +27,14 @@ libraryDependencies ++= Seq(
 1100:play.modules.reactivemongo.ReactiveMongoPlugin
 ```
 
-*4. Configuring the DB*
+**4. Configuring the DB**
 
+*conf/application.conf*
 ```
 mongodb.uri ="mongodb://username:password@localhost:27017/your_db_name"
 ```
 
-*5. Routes*
+**5. Routes**
 
 *conf/routes*
 ```routes
@@ -41,7 +42,7 @@ GET        /people              controllers.Application.people
 POST       /people              controllers.Application.addPerson()
 ```
 
-*6. Model*
+**6. Model**
 
 ```scala
 import play.api.libs.json.Json
@@ -58,7 +59,7 @@ trait JSONFormats {
 }
 ```
 
-*7. Controller*
+**7. Controller**
 
 *controllers/Application.scala*
 ```scala
@@ -88,7 +89,7 @@ object Application extends Controller with MongoController with JSONFormats {
   
 ```
 
-*8. Run this app*
+**8. Run this app**
 
 ```sh
 ./activator run
